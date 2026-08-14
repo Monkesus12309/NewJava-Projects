@@ -33,3 +33,13 @@ function drawGraphic() {
     var circle = ctx.arc(x, y, r, 0, 2 * Math.PI);
     ctx.stroke();
 }
+
+// .some method
+var ages = [2, 10, 12, 5, 2, 20, 8, 15, 50];
+
+// creates a function with a parameter
+checkage = (age) => age >= 55; // last number is what it should equal or be greater than
+
+function someMethod() {
+    document.getElementById("displayAge").innerHTML = ages.some(checkage);
+}

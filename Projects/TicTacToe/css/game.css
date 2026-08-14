@@ -1,4 +1,8 @@
 /*This container includes our table and our canvas.*/
+html {
+    background-color: rgb(8, 8, 8);
+}
+
 .center-container {
     /*This Property sets the width of our canvas.*/
     width: 608px;
