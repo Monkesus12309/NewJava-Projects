@@ -9,7 +9,7 @@ html {
     /*This Property centers our container*/
     margin: 0 auto;
     /*50px down from the top*/
-    margin-top: 75px;
+    margin-top: 250px;
 }
 
 table {
@@ -41,8 +41,20 @@ canvas {
 }
 
 h1 {
-    text-align: center;
+    position: relative;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: red;
     font-size: 50px;
+    margin: 0;
+}
+
+#winText {
+    color: rgb(209, 190, 21);
+    font-size: 150px;
+    text-align: center;
+    position: absolute;
+    justify-self: center;
+    z-index: 10;
+    pointer-events: none;
+    margin: -200px;
 }

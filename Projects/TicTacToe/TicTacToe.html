@@ -9,10 +9,7 @@
     </head>
 
     <body id="body">
-
-
-        <h1>TIC TAC TOE</h1>
-        <h1>INSANITY EDITION</h1>
+        <h1 hidden id="winText">YOU WIN!</h1>
         <!--This container is needed to overlay our canvas over out table.-->
         <div class="center-container">
             <!--Canvas Width and height must be within the element.-->
@@ -28,12 +25,14 @@
                     <td id="4" onclick="placeXorO('4')"></td>
                     <td id="5" onclick="placeXorO('5')"></td>
                 </tr>
-                    <tr>
-                        <td id="6" onclick="placeXorO('6')"></td>
-                        <td id="7" onclick="placeXorO('7')"></td>
-                        <td id="8" onclick="placeXorO('8')"></td>
-                    </tr>
+                <tr>
+                    <td id="6" onclick="placeXorO('6')"></td>
+                    <td id="7" onclick="placeXorO('7')"></td>
+                    <td id="8" onclick="placeXorO('8')"></td>
+                </tr>
             </table>
         </div>
+        <h1>TIC TAC TOE</h1>
+        <h1>INSANITY EDITION</h1>
     </body>
 </html>
