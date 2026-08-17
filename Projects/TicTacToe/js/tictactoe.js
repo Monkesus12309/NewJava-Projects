@@ -3,6 +3,8 @@ let activePlayer = 'X';
 // this array stores an array of moves. We use this to determine win conditions.
 let selectedSlots = [];
 
+var GameFinished = false;
+
 // This function is for placing x or o in a slot.
 function placeXorO(squareNumber) {
     // this condition ensures a square hasnt been selected already.
@@ -37,11 +39,11 @@ function placeXorO(squareNumber) {
         // plays a placement sound
         audio("media/place.wav");
         // this condition checks to see if it is the computers turn
-        if (activePlayer === 'E') { // E is set to disable timer between turns due to no computer playing
+        if (activePlayer === 'O') { // E is set to disable timer between turns due to no computer playing
             // This function disables clicking if it is the comupters turn
             disableClick();
             // this function waits 1 second before the computer places an image and enables click
-            setTimeout(function () { computersTurn();}, 1);
+            setTimeout(function () {computerTurn(); }, 1500);
         }
         // returning true is needed for computersTurn() function to work.
         return true;
@@ -53,17 +55,18 @@ function placeXorO(squareNumber) {
         // this variable stores a random number 0-8
         let pickASlot;
         // this condition allows our while loop to keep trying if a square is selected already
-        while (!success) {
+        while (success == false && GameFinished == false) {
             // a random number between 0-8 is selected
-            pickASlot = String(Math.floor() * 9);
+            pickASlot = Math.round(Math.random() * 9);
             // if the random number evalutated returns true, the slot hasnt been selected yet
             if (placeXorO(pickASlot)) {
                 // this line calls the function
                 placeXorO(pickASlot);
                 // this changes our boolean and ends the loop.
-                return true;
+                success = true;
             };
         }
+        
     }
 }
 
@@ -120,10 +123,11 @@ function checkWinConditions() {
     // this condition checks for a tie.
     // if 9 slots are selected then execute this code
     else if (selectedSlots.length >= 9) {
+        GameFinished = true;
         audio('./media/tieGame.wav')
         document.getElementById("winText").textContent = 'TIE';
         document.getElementById("winText").style.display = 'block'; // displays win text
-        setTimeout(function () {audio('./media/tieGame.wav'), resetGame();}, 2000);
+        setTimeout(function () {activePlayer = "X", GameFinished = false, audio('./media/tieGame.wav'), resetGame();}, 2000);
     }
 
     //This Function checks if an array includes 3 strings. It is used to check for each win condition.
@@ -190,6 +194,7 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
 
         // this line disallows clicking while the win sound is playing
         disableClick();
+        GameFinished = true;
         // this line plays the win sounds.
         audio('./media/winGame.wav');
         document.getElementById("winText").textContent = 'YOU WIN!';
@@ -197,7 +202,7 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
         // this line calls our main animation loop.
         animateLineDrawing();
         // This line waits 1 second. then, clears canvas, resets game and allows clicking again.
-        setTimeout(function () { resetGame(); clearBoard();}, 3000);
+        setTimeout(function () {GameFinished = false, activePlayer = "X", resetGame(), clearBoard();}, 2000);
 }
 
 
@@ -215,7 +220,7 @@ function resetGame() {
 function disableClick() {
     // This makes our body unclickable.
     body.style.pointerEvents = 'none';
-    setTimeout(function () { body.style.pointerEvents = 'auto';}, 3000);
+    setTimeout(function () { body.style.pointerEvents = 'auto';}, 2000);
 }
 
 function audio(audioURL) {
