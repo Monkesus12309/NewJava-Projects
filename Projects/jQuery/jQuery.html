@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--jQuery is assigned here-->
+        <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    </head>
+
+    <script>
+        $(document).ready(function() {
+            $("html").append(
+                "<body>\
+                    <div id='container'>\
+                        <div id='inner'>\
+                            <h1>Basic jQuery</h1>\
+                            <p id='1'>Paragraph 1</p>\
+                            <p id='2'>Paragraph 2 (click me!)</p>\
+                            <p id='3'>Paragraph 3</p>\
+                            <p id='4'>Paragraph 4 (click me!)</p>\
+                        </div>\
+                    </div>\
+                </body>"
+            );
+            $("#1").css({"color":"red"});
+            $("#2").css({"color":"blue"});
+            $("#3").css({"color":"green"});
+            $("#4").css({"color":"purple"});
+
+            function resetHeader() {
+                $("h1").show();
+                $("h1").css({"font-family":"Aerial", "color":"black"})
+            };
+
+            $("#1").click(function() {
+                resetHeader();
+            });
+
+            $("#2").click(function() {
+                resetHeader();
+                $("h1").slideUp(1000);
+            });
+
+
+            $("#4").click(function() {
+                resetHeader();
+                $("h1").css({"font-family": "Impact", "color": "purple"});
+                $("h1").fadeOut(800);
+            });
+        });
+    </script>
+</html>
